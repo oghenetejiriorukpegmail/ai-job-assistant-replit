@@ -2,7 +2,7 @@
 
 /**
  * Main frontend app component.
- * Handles authentication flow and dashboard placeholder.
+ * Handles authentication flow and profile/dashboard.
  * 
  * Author: Roo
  * Date: 2025-04-07
@@ -10,6 +10,7 @@
 
 import React, { useState } from 'react';
 import Auth from './Auth';
+import Profile from './Profile';
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -21,10 +22,7 @@ function App() {
   return (
     <div>
       {isAuthenticated ? (
-        <div>
-          <h1>Welcome to Job Application SaaS</h1>
-          <p>Dashboard and features coming soon.</p>
-        </div>
+        <Profile />
       ) : (
         <Auth onAuthSuccess={handleAuthSuccess} />
       )}
