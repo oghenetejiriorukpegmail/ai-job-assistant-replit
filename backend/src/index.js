@@ -51,6 +51,10 @@ app.get('/api/health', (req, res) => {
 const authRouter = require('./auth/auth.routes');
 app.use('/api/auth', authRouter);
 
+// Import and mount user profile routes
+const userRouter = require('./users/user.routes');
+app.use('/api/users', userRouter);
+
 // TODO: Import and mount user, resume, preference routers similarly
 
 // Global error handler
