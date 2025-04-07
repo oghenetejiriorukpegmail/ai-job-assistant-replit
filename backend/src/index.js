@@ -51,6 +51,10 @@ app.get('/api/health', (req, res) => {
 const authRouter = require('./auth/auth.routes');
 app.use('/api/auth', authRouter);
 
+// Import and mount matching preferences routes
+const preferencesRouter = require('./preferences/preferences.routes');
+app.use('/api/preferences', preferencesRouter);
+
 // Import and mount resume upload routes
 const resumeRouter = require('./resumes/resume.routes');
 app.use('/api/resumes', resumeRouter);
