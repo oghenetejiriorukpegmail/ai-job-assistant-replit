@@ -2,7 +2,7 @@
 
 /**
  * User profile management component.
- * Allows viewing and updating profile, resume, and preferences.
+ * Allows viewing and updating profile, resume, preferences, and matched jobs.
  * 
  * Author: Roo
  * Date: 2025-04-07
@@ -10,19 +10,18 @@
 
 import React, { useState, useEffect } from 'react';
 import { apiRequest } from './api';
+import ResumeUpload from './ResumeUpload';
+import PreferencesWizard from './PreferencesWizard';
+import JobMatches from './JobMatches';
 
 function Profile() {
   const [profile, setProfile] = useState(null);
   const [email, setEmail] = useState('');
-  const [preferences, setPreferences] = useState(null);
-  const [resumeContent, setResumeContent] = useState('');
   const [error, setError] = useState('');
   const [message, setMessage] = useState('');
 
   useEffect(() => {
     fetchProfile();
-    fetchPreferences();
-    fetchResume();
   }, []);
 
   async function fetchProfile() {
@@ -32,24 +31,6 @@ function Profile() {
       setEmail(data.email);
     } catch (err) {
       setError(err.message);
-    }
-  }
-
-  async function fetchPreferences() {
-    try {
-      const data = await apiRequest('/api/preferences');
-      setPreferences(data);
-    } catch (err) {
-      // ignore if not set
-    }
-  }
-
-  async function fetchResume() {
-    try {
-      const res = await apiRequest('/api/resumes/user'); // Placeholder, implement backend later
-      setResumeContent(res.content);
-    } catch (err) {
-      // ignore if not set
     }
   }
 
@@ -84,19 +65,11 @@ function Profile() {
         <button type="submit">Update Profile</button>
       </form>
 
-      <h3>Matching Preferences</h3>
-      {preferences ? (
-        <pre>{JSON.stringify(preferences, null, 2)}</pre>
-      ) : (
-        <p>No preferences set.</p>
-      )}
+      <ResumeUpload />
 
-      <h3>Parsed Resume Content</h3>
-      {resumeContent ? (
-        <pre>{resumeContent}</pre>
-      ) : (
-        <p>No resume uploaded.</p>
-      )}
+      <PreferencesWizard />
+
+      <JobMatches />
     </div>
   );
 }

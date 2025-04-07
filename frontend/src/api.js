@@ -13,6 +13,8 @@
  * Date: 2025-04-07
  */
 
+const API_BASE_URL = 'http://localhost:5000';
+
 let jwtToken = null;
 
 /**
@@ -21,6 +23,7 @@ let jwtToken = null;
  */
 export function setToken(token) {
   jwtToken = token;
+  window.jwtToken = token; // expose for fetch fallback
 }
 
 /**
@@ -28,6 +31,7 @@ export function setToken(token) {
  */
 export function clearToken() {
   jwtToken = null;
+  window.jwtToken = null;
 }
 
 /**
@@ -43,7 +47,7 @@ export async function apiRequest(url, options = {}) {
     headers['Authorization'] = `Bearer ${jwtToken}`;
   }
 
-  const response = await fetch(url, {
+  const response = await fetch(`${API_BASE_URL}${url}`, {
     ...options,
     headers,
   });
