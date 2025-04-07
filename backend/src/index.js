@@ -47,10 +47,11 @@ app.get('/api/health', (req, res) => {
   res.status(200).json({ status: 'Backend API is running' });
 });
 
-// TODO: Import and use auth, user, resume, preference routers here
-// Example:
-// const authRouter = require('./auth/auth.routes');
-// app.use('/api/auth', authRouter);
+// Import and mount authentication routes
+const authRouter = require('./auth/auth.routes');
+app.use('/api/auth', authRouter);
+
+// TODO: Import and mount user, resume, preference routers similarly
 
 // Global error handler
 app.use((err, req, res, next) => {
