@@ -1,0 +1,55 @@
+/* Layout */
+.app-container {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+  min-height: calc(100vh - 120px); /* Account for header and footer */
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.main-content {
+  flex: 1;
+  padding: var(--spacing-lg);
+  width: 100%;
+  position: relative;
+  z-index: 1;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.main-content > * {
+  width: 100%;
+  max-width: 1600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Background decoration */
+.app-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 40%;
+  height: 80vh;
+  background: linear-gradient(135deg, rgba(67, 97, 238, 0.05), rgba(76, 201, 240, 0.1));
+  border-radius: 0 0 0 100%;
+  z-index: 0;
+}
+
+.app-container::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 30%;
+  height: 60vh;
+  background: linear-gradient(135deg, rgba(86, 11, 173, 0.05), rgba(67, 97, 238, 0.08));
+  border-radius: 0 100% 0 0;
+  z-index: 0;
+}

@@ -3,14 +3,14 @@
 /**
  * Matching preferences routes.
  * Provides endpoints to save and retrieve user job matching preferences.
- * 
+ *
  * Author: Roo
  * Date: 2025-04-07
  */
 
 const express = require('express');
 const { savePreferences, getPreferences } = require('./preferences.controller');
-const { authenticateJWT } = require('../auth/auth.middleware');
+const authMiddleware = require('../middleware/auth.middleware');
 
 const router = express.Router();
 
@@ -19,13 +19,13 @@ const router = express.Router();
  * @desc Save or update user matching preferences
  * @access Private (JWT required)
  */
-router.post('/', authenticateJWT, savePreferences);
+router.post('/', authMiddleware, savePreferences);
 
 /**
  * @route GET /api/preferences
  * @desc Get user matching preferences
  * @access Private (JWT required)
  */
-router.get('/', authenticateJWT, getPreferences);
+router.get('/', authMiddleware, getPreferences);
 
 module.exports = router;

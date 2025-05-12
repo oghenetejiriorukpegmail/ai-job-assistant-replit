@@ -1,0 +1,141 @@
+/* Resume Upload Styles */
+.resume-upload-container {
+  margin-bottom: 2rem;
+  max-width: 1200px; /* Increased from 800px for better desktop experience */
+  margin: 0 auto;
+}
+
+.upload-instructions {
+  margin-bottom: 0.5rem;
+  color: var(--text-light);
+}
+
+.ai-note {
+  margin-bottom: 1.5rem;
+  color: var(--primary-color);
+  font-size: 0.9rem;
+  font-style: italic;
+}
+
+.ai-provider-selection {
+  margin-bottom: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.ai-provider-selection label {
+  font-weight: 500;
+  color: var(--text-color);
+}
+
+.provider-select {
+  padding: 0.75rem;
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  background-color: white;
+  font-family: var(--font-family);
+  font-size: 1rem;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%234f46e5' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.75rem center;
+  background-size: 1rem;
+  cursor: pointer;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.provider-select:hover {
+  border-color: var(--primary-color);
+}
+
+.provider-select:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.2);
+}
+
+.file-upload-area {
+  margin-bottom: 1.5rem;
+}
+
+.file-upload-label {
+  display: block;
+  cursor: pointer;
+  width: 100%;
+}
+
+.file-input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+.upload-button-area {
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  border: 2px dashed var(--border-color);
+  border-radius: var(--border-radius);
+  transition: all 0.2s;
+}
+
+.upload-button-area:hover {
+  border-color: var(--primary-color);
+}
+
+.upload-icon {
+  font-size: 1.5rem;
+  margin-right: 1rem;
+}
+
+.upload-button {
+  display: block;
+  width: 100%;
+  padding: 0.75rem;
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: var(--border-radius);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.upload-button:hover:not(:disabled) {
+  background-color: var(--secondary-color);
+  transform: translateY(-2px);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.upload-button:disabled {
+  background-color: #d1d5db;
+  cursor: not-allowed;
+}
+
+.uploading {
+  position: relative;
+  background-color: var(--primary-color);
+  color: transparent;
+}
+
+.uploading::after {
+  content: '';
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  top: 50%;
+  left: 50%;
+  margin-top: -10px;
+  margin-left: -10px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top-color: white;
+  animation: spin 1s linear infinite;
+}

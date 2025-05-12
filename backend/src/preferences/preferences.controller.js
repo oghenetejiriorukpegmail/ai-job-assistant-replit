@@ -3,21 +3,21 @@
 /**
  * Matching preferences controller.
  * Handles saving and retrieving user job matching preferences.
- * 
+ *
  * Security-first approach:
  * - JWT authentication required
  * - Input validation
- * 
+ *
  * Author: Roo
  * Date: 2025-04-07
  */
 
-const preferences = []; // In-memory store (replace with DB)
+const { Preference } = require('../models');
 
 // Save or update user preferences
-function savePreferences(req, res) {
+async function savePreferences(req, res) {
   try {
-    const userId = req.user.userId;
+    const userId = req.user.id;
     const { mode, jobTitles } = req.body;
 
     if (!mode || !['resume', 'titles'].includes(mode)) {
@@ -29,15 +29,27 @@ function savePreferences(req, res) {
     }
 
     // Check if preference exists
-    const existing = preferences.find(p => p.userId === userId);
-    if (existing) {
-      existing.mode = mode;
-      existing.jobTitles = jobTitles || [];
+    let preference = await Preference.findOne({ userId });
+
+    if (preference) {
+      // Update existing preference
+      preference.mode = mode;
+      preference.jobTitles = jobTitles || [];
+      await preference.save();
     } else {
-      preferences.push({ userId, mode, jobTitles: jobTitles || [] });
+      // Create new preference
+      preference = new Preference({
+        userId,
+        mode,
+        jobTitles: jobTitles || []
+      });
+      await preference.save();
     }
 
-    return res.status(200).json({ message: 'Preferences saved successfully.' });
+    return res.status(200).json({
+      message: 'Preferences saved successfully.',
+      preference
+    });
   } catch (err) {
     console.error('Save preferences error:', err);
     return res.status(500).json({ error: 'Internal server error.' });
@@ -45,16 +57,16 @@ function savePreferences(req, res) {
 }
 
 // Get user preferences
-function getPreferences(req, res) {
+async function getPreferences(req, res) {
   try {
-    const userId = req.user.userId;
-    const pref = preferences.find(p => p.userId === userId);
+    const userId = req.user.id;
+    const preference = await Preference.findOne({ userId });
 
-    if (!pref) {
+    if (!preference) {
       return res.status(404).json({ error: 'Preferences not found.' });
     }
 
-    return res.status(200).json(pref);
+    return res.status(200).json(preference);
   } catch (err) {
     console.error('Get preferences error:', err);
     return res.status(500).json({ error: 'Internal server error.' });

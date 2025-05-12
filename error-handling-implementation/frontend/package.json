@@ -1,0 +1,23 @@
+{
+  "name": "error-handling-implementation-frontend",
+  "version": "1.0.0",
+  "description": "Frontend components for robust error handling implementation",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "error-handling",
+    "frontend",
+    "recruitment",
+    "platform"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "prop-types": "^15.8.1"
+  }
+}

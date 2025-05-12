@@ -3,10 +3,29 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
+    "start": "node run.js",
+    "dev": "concurrently \"npm run dev:backend\" \"npm run dev:frontend\"",
+    "dev:frontend": "cd frontend && npm run dev",
+    "dev:backend": "cd backend && npm run dev",
+    "build": "cd frontend && npm run build",
+    "prod": "concurrently \"npm run prod:backend\" \"npm run prod:frontend\"",
+    "prod:frontend": "cd frontend && npm run preview",
+    "prod:backend": "cd backend && npm start",
+    "install:all": "npm install && cd frontend && npm install && cd ../backend && npm install",
+    "setup:mongodb:docker": "bash setup-mongodb-docker.sh",
+    "setup:mongodb:windows": "setup-mongodb-windows.bat",
+    "setup:mongodb:local": "setup-mongodb-local.bat",
+    "dev:with-db": "npm run setup:mongodb:local && npm run dev",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": ""
+  "description": "Job Application SaaS Tool",
+  "dependencies": {
+    "concurrently": "^8.2.2",
+    "dotenv": "^16.4.5",
+    "nodemailer": "^6.10.0",
+    "open": "^10.1.0"
+  }
 }

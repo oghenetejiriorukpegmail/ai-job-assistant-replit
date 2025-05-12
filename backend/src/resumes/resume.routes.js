@@ -3,41 +3,67 @@
 /**
  * Resume upload and retrieval routes.
  * Provides endpoints to upload, parse, and fetch resumes.
- * 
- * Author: Roo
- * Date: 2025-04-07
  */
 
 const express = require('express');
-const { upload, uploadResume, parsedResumes } = require('./resume.controller');
-const { authenticateJWT } = require('../auth/auth.middleware');
+const {
+  uploadResume,
+  uploadResumeWithAI,
+  getResume,
+  getUserResumes
+} = require('./resume.controller');
+const authMiddleware = require('../middleware/auth.middleware');
 
 const router = express.Router();
 
 /**
  * @route POST /api/resumes/upload
- * @desc Upload and parse a resume (PDF/DOCX)
+ * @desc Upload and parse a resume (PDF/DOCX) using basic parser
  * @access Private (JWT required)
  */
-router.post('/upload', authenticateJWT, upload.single('resume'), uploadResume);
+router.post(
+  '/upload',
+  authMiddleware,
+  (req, res, next) => {
+    uploadResume(req, res, (err) => {
+      if (err) return next(err);
+      if (!req.file) {
+        return res.status(400).json({ error: 'Resume file is required' });
+      }
+    });
+  }
+);
+
+/**
+ * @route POST /api/resumes/upload/ai
+ * @desc Upload and parse a resume (PDF/DOCX) using AI
+ * @access Private (JWT required)
+ */
+router.post(
+  '/upload/ai',
+  authMiddleware,
+  (req, res, next) => {
+    uploadResumeWithAI(req, res, (err) => {
+      if (err) return next(err);
+      if (!req.file) {
+        return res.status(400).json({ error: 'Resume file is required' });
+      }
+    });
+  }
+);
 
 /**
  * @route GET /api/resumes/user
- * @desc Get current user's parsed resume
+ * @desc Get all resumes for the current user
  * @access Private (JWT required)
  */
-router.get('/user', authenticateJWT, (req, res) => {
-  try {
-    const userId = req.user.userId;
-    const resume = parsedResumes.find(r => r.userId === userId);
-    if (!resume) {
-      return res.status(404).json({ error: 'Resume not found.' });
-    }
-    return res.status(200).json(resume);
-  } catch (err) {
-    console.error('Fetch resume error:', err);
-    return res.status(500).json({ error: 'Internal server error.' });
-  }
-});
+router.get('/user', authMiddleware, getUserResumes);
+
+/**
+ * @route GET /api/resumes/:id
+ * @desc Get a specific resume by ID
+ * @access Private (JWT required)
+ */
+router.get('/:id', authMiddleware, getResume);
 
 module.exports = router;
