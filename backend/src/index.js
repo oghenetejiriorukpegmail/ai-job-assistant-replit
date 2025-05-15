@@ -37,11 +37,15 @@ connectDB().then((conn) => {
 // Security HTTP headers
 app.use(helmet());
 
-// Enable CORS with strict policy (adjust origin in production)
-app.use(cors({
-  origin: 'http://localhost:5173',
+// Enable CORS with support for both local and Replit environments
+const isReplit = process.env.REPL_ID !== undefined;
+const corsOptions = {
+  origin: isReplit 
+    ? `https://${process.env.REPL_SLUG}.${process.env.REPL_OWNER}.repl.co`
+    : ['http://localhost:5173', 'http://localhost:3000', 'http://localhost:5000'],
   credentials: true,
-}));
+};
+app.use(cors(corsOptions));
 
 // Rate limiting to prevent abuse
 const limiter = rateLimit({

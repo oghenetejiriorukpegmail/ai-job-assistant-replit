@@ -1,0 +1,31 @@
+run = "npm start"
+entrypoint = "run.js"
+hidden = [".config", "package-lock.json"]
+
+[nix]
+channel = "stable-23_11"
+
+[env]
+PORT = "3000"
+MONGODB_URI = "${MONGODB_URI}"
+JWT_SECRET = "${JWT_SECRET}"
+VITE_API_URL = "${VITE_API_URL}"
+
+[packager]
+language = "nodejs"
+  [packager.features]
+  enabledForHosting = true
+  packageSearch = true
+
+[gitHubImport]
+requiredFiles = [".replit", "replit.nix"]
+
+[languages]
+  [languages.javascript]
+  pattern = "**/{*.js,*.jsx,*.ts,*.tsx}"
+    [languages.javascript.languageServer]
+    start = "typescript-language-server --stdio"
+
+[deployment]
+build = ["npm", "run", "build"]
+run = ["npm", "start"]

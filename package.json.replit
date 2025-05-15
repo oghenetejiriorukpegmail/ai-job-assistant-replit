@@ -1,0 +1,36 @@
+{
+  "name": "job-application-saas-replit",
+  "version": "1.0.0",
+  "main": "run.js",
+  "scripts": {
+    "start": "node run.js",
+    "dev": "concurrently \"npm run dev:backend\" \"npm run dev:frontend\"",
+    "dev:frontend": "cd frontend && npm run dev",
+    "dev:backend": "cd backend && npm run dev",
+    "build": "cd frontend && npm run build",
+    "postinstall": "npm run install:all",
+    "prod": "concurrently \"npm run prod:backend\" \"npm run prod:frontend\"",
+    "prod:frontend": "cd frontend && npm run preview",
+    "prod:backend": "cd backend && npm start",
+    "install:all": "npm install && cd frontend && npm install && cd ../backend && npm install",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "replit",
+    "job-search",
+    "saas",
+    "application-tracker"
+  ],
+  "author": "",
+  "license": "ISC",
+  "description": "Job Application SaaS Tool - Replit Version",
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "dependencies": {
+    "concurrently": "^8.2.2",
+    "dotenv": "^16.4.5",
+    "nodemailer": "^6.10.0",
+    "open": "^10.1.0"
+  }
+}

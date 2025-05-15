@@ -133,3 +133,10 @@ public/build/
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+
+# Replit files
+.config/
+.cache/
+.upm/
+.breakpoints
+.replit.nix

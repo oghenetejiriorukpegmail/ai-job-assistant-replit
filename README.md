@@ -32,19 +32,21 @@ A secure, modular SaaS platform to automate job search and application processes
 
 ## Setup Instructions
 
-### Prerequisites
+### Local Development
+
+#### Prerequisites
 
 - Node.js (v16+ recommended)
 - Git
 
-### Clone the repository
+#### Clone the repository
 
 ```bash
-git clone https://github.com/oghenetejiriorukpegmail/job-application-saas.git
+git clone https://github.com/yourusername/job-application-saas.git
 cd job-application-saas
 ```
 
-### Configure environment variables
+#### Configure environment variables
 
 - Copy `.env.example` to `.env`
 - Update secrets as needed
@@ -76,18 +78,18 @@ GLASSDOOR_API_KEY=your_glassdoor_api_key
 GOOGLE_API_KEY=your_google_api_key  # Same key used for Google Jobs API
 ```
 
-### Install dependencies
+#### Install dependencies
 
 ```bash
 # Install all dependencies (root, frontend, and backend)
 npm run install:all
 ```
 
-### Set up MongoDB (Optional)
+#### Set up MongoDB (Optional)
 
 You have several options for setting up MongoDB:
 
-#### Option 1: Use Docker (Recommended)
+##### Option 1: Use Docker (Recommended)
 
 ```bash
 npm run setup:mongodb:docker
@@ -99,7 +101,7 @@ This will:
 - Create the necessary database and user
 - Update the `.env` file with the connection string
 
-#### Option 2: Install MongoDB locally on Windows
+##### Option 2: Install MongoDB locally on Windows
 
 ```bash
 npm run setup:mongodb:windows
@@ -111,11 +113,11 @@ This will:
 - Create the necessary database and user
 - Update the `.env` file with the connection string
 
-#### Option 3: Use MongoDB Atlas (Cloud)
+##### Option 3: Use MongoDB Atlas (Cloud)
 
 Follow the instructions in `setup-mongodb-atlas.md` to set up a free MongoDB Atlas cluster.
 
-### Run the application
+#### Run the application
 
 ```bash
 # Development mode with MongoDB (recommended)
@@ -134,7 +136,37 @@ npm start
 
 The application will automatically open in your default browser.
 
-### Individual component commands
+### Replit Deployment
+
+This project can be easily deployed on Replit. Follow these steps:
+
+1. **Fork the repository to Replit**
+   - Go to [Replit](https://replit.com)
+   - Create a new repl and select "Import from GitHub"
+   - Enter your GitHub repository URL
+
+2. **Configure Replit environment variables**
+   - In your Replit project, go to the "Secrets" tab (lock icon)
+   - Add the following environment variables:
+     - `MONGODB_URI`: Your MongoDB connection string (ideally MongoDB Atlas)
+     - `JWT_SECRET`: A secure random string for JWT token signing
+     - `GOOGLE_API_KEY`: Your Google API key (if using AI features)
+     - Add any other API keys as needed for job integrations
+
+3. **Run the application**
+   - Replit will automatically detect the `.replit` configuration file
+   - Click the "Run" button to start the application
+   - The application will build the frontend and start the backend server
+   - Your app will be accessible at the Replit URL (displayed in the console)
+
+4. **Keeping the Repl alive**
+   - To keep your Repl running 24/7, you'll need to:
+     - Upgrade to a paid Replit plan, or
+     - Use a service like UptimeRobot to ping your Repl URL periodically
+
+---
+
+## Individual component commands
 
 ```bash
 # Run only the backend (development mode)
@@ -157,7 +189,7 @@ npm run prod:frontend
 
 ## Security Notes
 
-- JWT secrets should be kept safe in `.env`
+- JWT secrets should be kept safe in `.env` and Replit Secrets
 - Passwords are hashed with bcrypt
 - Input validation and error handling throughout
 - CORS and rate limiting enabled

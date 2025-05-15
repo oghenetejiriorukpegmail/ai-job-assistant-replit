@@ -14,9 +14,15 @@ if (dotenvResult.error) {
   console.log('[DEBUG] dotenv parsed:', dotenvResult.parsed);
 }
 
-// Get MongoDB URI from environment variables or use default
-const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/job-application-saas';
-console.log(`[DEBUG] MONGODB_URI is (after dotenv): ${MONGODB_URI}`); // Updated debug log
+// Check if running on Replit
+const isReplit = process.env.REPL_ID !== undefined;
+
+// Get MongoDB URI from environment variables with Replit-specific fallbacks
+const MONGODB_URI = process.env.MONGODB_URI || 
+                   (isReplit ? process.env.REPLIT_MONGO_URI : 'mongodb://localhost:27017/job-application-saas');
+
+console.log(`[DEBUG] MONGODB_URI is (after dotenv): ${MONGODB_URI}`);
+console.log(`[DEBUG] Running in ${isReplit ? 'Replit' : 'local'} environment`);
 
 // Flag to track if we're using in-memory fallback
 let usingFallback = false;
