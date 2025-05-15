@@ -1,0 +1,185 @@
+/* Toast Container */
+.toast-container {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 350px;
+}
+
+/* Toast Notification */
+.toast {
+  display: flex;
+  padding: 16px;
+  border-radius: 4px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  animation: toast-in 0.3s ease-out;
+  overflow: hidden;
+  width: 100%;
+}
+
+/* Toast Types */
+.toast-error {
+  background-color: #fff1f0;
+  border-left: 4px solid #ff4d4f;
+}
+
+.toast-warning {
+  background-color: #fffbe6;
+  border-left: 4px solid #faad14;
+}
+
+.toast-success {
+  background-color: #f6ffed;
+  border-left: 4px solid #52c41a;
+}
+
+.toast-info {
+  background-color: #e6f7ff;
+  border-left: 4px solid #1890ff;
+}
+
+/* Toast Content */
+.toast-content {
+  display: flex;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.toast-icon {
+  margin-right: 12px;
+  font-size: 18px;
+  flex-shrink: 0;
+}
+
+.toast-message {
+  flex-grow: 1;
+  font-size: 14px;
+  line-height: 1.5;
+  color: rgba(0, 0, 0, 0.85);
+  word-break: break-word;
+}
+
+/* Toast Close Button */
+.toast-close {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  color: rgba(0, 0, 0, 0.45);
+  margin-left: 12px;
+  padding: 0;
+  line-height: 1;
+  transition: color 0.2s;
+}
+
+.toast-close:hover {
+  color: rgba(0, 0, 0, 0.85);
+}
+
+/* Toast Animations */
+@keyframes toast-in {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* Error Fallback */
+.error-fallback {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 400px;
+  padding: 20px;
+}
+
+.error-container {
+  max-width: 500px;
+  padding: 24px;
+  border-radius: 4px;
+  background-color: #fff1f0;
+  border: 1px solid #ffccc7;
+  text-align: center;
+}
+
+.error-container h2 {
+  color: #ff4d4f;
+  margin-top: 0;
+  margin-bottom: 16px;
+}
+
+.error-message {
+  margin-bottom: 24px;
+}
+
+.error-id {
+  font-size: 12px;
+  color: rgba(0, 0, 0, 0.45);
+  margin-top: 8px;
+}
+
+.error-actions {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.retry-button, .reload-button {
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.2s;
+}
+
+.retry-button {
+  background-color: #ff4d4f;
+  color: white;
+  border: none;
+}
+
+.retry-button:hover {
+  background-color: #ff7875;
+}
+
+.reload-button {
+  background-color: white;
+  color: rgba(0, 0, 0, 0.85);
+  border: 1px solid #d9d9d9;
+}
+
+.reload-button:hover {
+  border-color: #ff4d4f;
+  color: #ff4d4f;
+}
+
+.error-details {
+  text-align: left;
+  margin-top: 16px;
+  padding: 12px;
+  background-color: rgba(0, 0, 0, 0.02);
+  border-radius: 4px;
+}
+
+.error-details summary {
+  cursor: pointer;
+  color: rgba(0, 0, 0, 0.45);
+  font-size: 12px;
+}
+
+.error-details pre {
+  margin: 8px 0 0;
+  white-space: pre-wrap;
+  font-size: 12px;
+  line-height: 1.5;
+  overflow-x: auto;
+}

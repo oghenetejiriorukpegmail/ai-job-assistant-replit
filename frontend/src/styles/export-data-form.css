@@ -1,0 +1,127 @@
+/* Export Data Form Styles */
+
+.export-data-form {
+  background-color: var(--surface-color);
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  box-shadow: var(--card-shadow);
+}
+
+.export-data-form h3 {
+  margin-top: 0;
+  margin-bottom: 1.25rem;
+  color: var(--text-color);
+  font-size: 1.4rem;
+}
+
+.export-data-form h4 {
+  margin-top: 0;
+  margin-bottom: 0.75rem;
+  color: var(--text-color);
+  font-size: 1.1rem;
+}
+
+.export-data-form form {
+  margin-bottom: 1.5rem;
+}
+
+.export-data-form .form-group {
+  margin-bottom: 1.25rem;
+}
+
+.export-data-form label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: var(--text-color);
+  font-weight: 500;
+}
+
+.export-data-form select {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  background-color: var(--input-background);
+  color: var(--text-color);
+  transition: border-color 0.2s ease;
+}
+
+.export-data-form select:focus {
+  border-color: var(--primary-color);
+  outline: none;
+}
+
+.btn-primary {
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 0.75rem 1.5rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.btn-primary:hover:not(:disabled) {
+  background-color: var(--primary-dark);
+}
+
+.btn-primary:disabled {
+  background-color: var(--text-secondary);
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+.export-result {
+  margin-top: 1.5rem;
+  padding: 1.25rem;
+  background-color: var(--surface-color-alt);
+  border-radius: 6px;
+  border-left: 4px solid var(--success-color);
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.export-result p {
+  margin: 0.5rem 0;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+}
+
+.btn-download {
+  margin-top: 1rem;
+  background-color: var(--success-color);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 0.75rem 1.5rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-download:hover {
+  background-color: var(--success-dark, #2e7d32);
+}
+
+.btn-download:before {
+  content: '↓';
+  margin-right: 0.5rem;
+  font-weight: bold;
+}
+
+.error-message {
+  padding: 0.75rem;
+  background-color: rgba(var(--error-color-rgb), 0.1);
+  color: var(--error-color);
+  border-radius: 4px;
+  margin-bottom: 1rem;
+}

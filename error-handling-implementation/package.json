@@ -1,0 +1,21 @@
+{
+  "name": "error-handling-implementation",
+  "version": "1.0.0",
+  "description": "Robust error handling implementation for the recruitment platform",
+  "main": "index.js",
+  "scripts": {
+    "install:backend": "cd backend && npm install",
+    "install:frontend": "cd frontend && npm install",
+    "install:all": "npm run install:backend && npm run install:frontend"
+  },
+  "keywords": [
+    "error-handling",
+    "recruitment",
+    "platform"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "async_hooks": "^1.0.0"
+  }
+}

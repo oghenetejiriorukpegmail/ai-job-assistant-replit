@@ -1,0 +1,210 @@
+/* Resume upload component styling with dark mode support */
+
+.upload-container {
+  margin-bottom: 2rem;
+}
+
+.file-upload-area {
+  border: 2px dashed var(--border-color);
+  border-radius: 8px;
+  padding: 2rem;
+  text-align: center;
+  cursor: pointer;
+  transition: border-color var(--transition-speed), background-color var(--transition-speed);
+  background-color: var(--surface-color);
+  margin-bottom: 1rem;
+}
+
+.file-upload-area:hover {
+  border-color: var(--primary-color);
+  background-color: var(--hover-color);
+}
+
+.file-input {
+  display: none;
+}
+
+.upload-button-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--text-color);
+}
+
+.upload-icon {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.upload-button {
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 0.75rem 1.5rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color var(--transition-speed);
+}
+
+.upload-button:hover:not(:disabled) {
+  background-color: var(--primary-dark);
+}
+
+.upload-button:disabled {
+  background-color: var(--text-disabled);
+  cursor: not-allowed;
+}
+
+.upload-button.uploading {
+  position: relative;
+  overflow: hidden;
+}
+
+.upload-button.uploading::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  animation: loading 1.5s infinite;
+}
+
+@keyframes loading {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+.success-message {
+  padding: 0.75rem;
+  background-color: rgba(var(--success-color-rgb), 0.1);
+  color: var(--success-color);
+  border-radius: 4px;
+  margin-bottom: 1rem;
+}
+
+.error-message {
+  padding: 0.75rem;
+  background-color: rgba(var(--error-color-rgb), 0.1);
+  color: var(--error-color);
+  border-radius: 4px;
+  margin-bottom: 1rem;
+}
+
+/* Parsed resume styling */
+.parsed-resume-container {
+  margin-top: 2rem;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  overflow: hidden;
+  background-color: var(--card-background);
+  transition: background-color var(--transition-speed), border-color var(--transition-speed);
+}
+
+.resume-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background-color: var(--surface-color);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.resume-header h3 {
+  margin: 0;
+  color: var(--text-color);
+}
+
+.provider-badge {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.25rem 0.75rem;
+  background-color: var(--primary-light);
+  color: var(--primary-color);
+  border-radius: 16px;
+  font-size: 0.8rem;
+}
+
+.provider-icon {
+  font-size: 1rem;
+}
+
+.resume-section {
+  padding: 1rem;
+  border-bottom: 1px solid var(--divider-color);
+}
+
+.resume-section:last-child {
+  border-bottom: none;
+}
+
+.resume-section h4 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  color: var(--primary-color);
+}
+
+.skills-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.skill-item {
+  background-color: var(--primary-light);
+  color: var(--primary-color);
+  padding: 0.25rem 0.75rem;
+  border-radius: 16px;
+  font-size: 0.8rem;
+}
+
+.experience-item, .education-item {
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--divider-color);
+}
+
+.experience-item:last-child, .education-item:last-child {
+  margin-bottom: 0;
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+.experience-title, .education-degree {
+  font-weight: 600;
+  color: var(--text-color);
+  margin: 0 0 0.25rem 0;
+}
+
+.experience-company, .education-institution {
+  color: var(--text-secondary);
+  margin: 0 0 0.25rem 0;
+}
+
+.experience-duration, .education-year {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  margin: 0 0 0.5rem 0;
+}
+
+.experience-description {
+  color: var(--text-secondary);
+  margin: 0;
+  line-height: 1.5;
+}

@@ -136,9 +136,9 @@ npm start
 
 The application will automatically open in your default browser.
 
-### Replit Deployment
+## Replit Deployment
 
-This project can be easily deployed on Replit. Follow these steps:
+This project can be easily deployed on Replit. It's configured to use Replit's built-in database, so you don't need to set up MongoDB. Follow these steps:
 
 1. **Fork the repository to Replit**
    - Go to [Replit](https://replit.com)
@@ -147,10 +147,8 @@ This project can be easily deployed on Replit. Follow these steps:
 
 2. **Configure Replit environment variables**
    - In your Replit project, go to the "Secrets" tab (lock icon)
-   - Add the following environment variables:
-     - `MONGODB_URI`: Your MongoDB connection string (ideally MongoDB Atlas)
+   - Add the following environment variable:
      - `JWT_SECRET`: A secure random string for JWT token signing
-     - `GOOGLE_API_KEY`: Your Google API key (if using AI features)
      - Add any other API keys as needed for job integrations
 
 3. **Run the application**

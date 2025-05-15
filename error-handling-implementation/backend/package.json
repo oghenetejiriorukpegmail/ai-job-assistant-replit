@@ -1,0 +1,23 @@
+{
+  "name": "error-handling-implementation-backend",
+  "version": "1.0.0",
+  "description": "Backend components for robust error handling implementation",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "error-handling",
+    "backend",
+    "recruitment",
+    "platform"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2",
+    "winston": "^3.11.0",
+    "uuid": "^9.0.1",
+    "async_hooks": "^1.0.0"
+  }
+}

@@ -29,29 +29,12 @@ cd frontend && npm run build && cd ..
 echo "Creating required directories..."
 mkdir -p tmp/uploads
 
-# Initialize MongoDB or validate MongoDB connection
-echo "Checking MongoDB connection..."
-node -e "
-const mongoose = require('mongoose');
-const uri = process.env.MONGODB_URI;
-if (!uri) {
-  console.error('MONGODB_URI environment variable is not set!');
-  console.error('Please set it in the Secrets tab on Replit.');
-  process.exit(1);
-}
-mongoose.connect(uri)
-  .then(() => {
-    console.log('MongoDB connection successful!');
-    mongoose.disconnect();
-  })
-  .catch(err => {
-    console.error('MongoDB connection failed!', err.message);
-    console.error('Please check your MONGODB_URI in the Secrets tab.');
-    process.exit(1);
-  });
-"
+# Check if we're using Replit Database
+echo "Setting up database..."
+# No need to configure MongoDB as we're using Replit Database
 
 # Set execute permissions for run.js
 chmod +x run.js
 
 echo "Setup complete! Run the application with 'npm start'"
+
