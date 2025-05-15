@@ -8,6 +8,7 @@
     "test": "jest",
     "start-mongodb": "node src/scripts/start-mongodb.js",
     "migrate": "node src/scripts/migrate-local-storage.js",
+    "db:seed:replit": "node src/scripts/seed-replit-db.js",
     "dev-with-db": "npm run start-mongodb && npm run dev"
   },
   "keywords": [],

@@ -20,11 +20,18 @@ async function createUser(userData) {
     userData.password = await bcrypt.hash(userData.password, salt);
   }
   
-  // Add default role if not provided
-  if (!userData.role) {
-    userData.role = 'user';
+  // Add default roles if not provided, otherwise use provided roles
+  if (!userData.roles || !Array.isArray(userData.roles) || userData.roles.length === 0) {
+    userData.roles = ['user'];
+  }
+  // Ensure 'user' role is always present if other roles are specified
+  else if (userData.roles.includes('admin') && !userData.roles.includes('user')) {
+    userData.roles.push('user');
   }
   
+  // Remove the single 'role' property if 'roles' array is now being used
+  delete userData.role;
+
   return User.insertOne(userData);
 }
 
